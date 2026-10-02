@@ -47,7 +47,7 @@ def chinese_bytes(data):
 def obtain_runner():
     path = WORK / 'runner-2024.14.apk'
     if not path.exists() or sha(path.read_bytes()) != RUNNER_SHA:
-        print('首次构建：下载固定版本安卓运行器（约 32 MB），只下载到本地。', flush=True)
+        print('Downloading the fixed Android runner (about 32 MB).' if os.environ.get('HD_ANDROID_LANGUAGE') == 'en' else '首次构建：下载固定版本安卓运行器（约 32 MB），只下载到本地。', flush=True)
         proxy_url = os.environ.get('HD_ANDROID_PROXY')
         if proxy_url is None:
             try:
@@ -61,33 +61,43 @@ def obtain_runner():
     return path
 
 def main():
-    parser = argparse.ArgumentParser(); parser.add_argument('game'); parser.add_argument('--runner'); args = parser.parse_args()
+    parser = argparse.ArgumentParser(); parser.add_argument('game'); parser.add_argument('--runner'); parser.add_argument('--language', choices=['zh','en'], default='zh'); args = parser.parse_args()
+    global PACKAGE
+    language = args.language
+    PACKAGE = 'io.github.qianliexian.holedweller.' + ('en' if language == 'en' else 'zhcn')
+    label = 'Hole Dweller English Test' if language == 'en' else 'Hole Dweller 汉化测试版'
+    def say(zh, en): print(en if language == 'en' else zh, flush=True)
     game = pathlib.Path(args.game)
     source = game / 'data.win' if game.is_dir() else game
     # 优先使用安装器保留的原版，但不更改它。
     if source.with_name('data.win.zhCN.original').is_file(): source = source.with_name('data.win.zhCN.original')
     original = source.read_bytes()
-    translated = chinese_bytes(original)
+    if language == 'en':
+        if sha(original) != ORIGINAL: raise ValueError('English builds require the supported original Steam r44 data.win or its data.win.zhCN.original backup. A Chinese-only file cannot be converted back automatically.')
+        translated = original
+    else:
+        translated = chinese_bytes(original)
     WORK.mkdir(exist_ok=True)
     build = WORK / 'build'
     if build.is_symlink() or (hasattr(build,'is_junction') and build.is_junction()): raise ValueError('构建目录不能是链接或目录联接')
     if build.exists(): shutil.rmtree(build)  # 固定于本工具 .local/build，绝不操作用户游戏目录。
     build.mkdir()
     log = build / '构建日志.txt'
-    log.write_text('Hole Dweller 安卓实验构建 0.2.0-alpha.4\n', encoding='utf-8')
+    log.write_text('Hole Dweller 安卓实验构建 0.2.0-alpha.5\n', encoding='utf-8')
     input_data = build / 'zhCN.win'; input_data.write_bytes(translated)
-    print('1/5 正版资源校验与汉化完成。', flush=True)
+    say('1/5 正版资源校验与汉化完成。', '1/5 Game resources verified; language selected.')
     os.environ['HD_ANDROID_PROJECT'] = str(ROOT)
+    os.environ['HD_ANDROID_LANGUAGE'] = language
     mobile_data = build / 'game.droid'
     run([TOOLS/'umt'/'UndertaleModCli.exe','load',input_data,'-s',ROOT/'src'/'安卓适配.csx','-o',mobile_data,'-f'],log)
     build_log = log.read_text(encoding='utf-8')
     if not mobile_data.is_file() or any(e in build_log for e in ('Script execution failed','Script compilation failed','Code import unsuccessful')): raise RuntimeError('安卓适配脚本失败')
-    print('2/5 触屏与安卓适配完成。', flush=True)
+    say('2/5 触屏与安卓适配完成。', '2/5 Touch controls and Android fixes applied.')
     runner = pathlib.Path(args.runner) if args.runner else obtain_runner()
     if sha(runner.read_bytes()) != RUNNER_SHA: raise ValueError('运行器版本或校验值不匹配')
     decoded = build/'decoded'
     run([JAVA,'-jar',TOOLS/'apktool.jar','d',runner,'-o',decoded,'-f'],log)
-    print('3/5 安卓运行器解包完成。', flush=True)
+    say('3/5 安卓运行器解包完成。', '3/5 Android runner unpacked.')
     # 模板的 DemoRenderer 用硬编码包名查询 APK 路径。
     # 仅修改应用包名字符串；保留 Java 类名及 JNI 接口，避免破坏原生库绑定。
     package_literals = 0
@@ -104,7 +114,7 @@ def main():
     for permission in list(manifest.findall('uses-permission')):
         if permission.get(android+'name','').startswith('android.permission.'):
             manifest.remove(permission)  # 不请求联网、蓝牙、存储等权限。
-    app = manifest.find('application'); app.set(android+'label','Hole Dweller 汉化测试版')
+    app = manifest.find('application'); app.set(android+'label',label)
     app.set(android+'extractNativeLibs','true')
     app.set(android+'allowBackup','false')
     for node in manifest.iter():
@@ -112,34 +122,34 @@ def main():
             if 'DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION' in v or k == android+'authorities': node.set(k,v.replace('com.company.game',PACKAGE))
     activity = app.find('activity')
     activity.set(android+'screenOrientation','sensorLandscape')
-    activity.set(android+'label','Hole Dweller 汉化测试版')
+    activity.set(android+'label',label)
     for metadata in app.findall('meta-data'):
         if metadata.get(android+'name') == 'IsBuiltAsYoYoRunner': metadata.set(android+'value','No')
     tree.write(manifest_path,encoding='utf-8',xml_declaration=True)
     yml = decoded/'apktool.yml'
-    text = yml.read_text(encoding='utf-8').replace('versionCode: 1000000','versionCode: 20004').replace('versionName: 1.0.0','versionName: 0.2.0-alpha.4')
+    text = yml.read_text(encoding='utf-8').replace('versionCode: 1000000','versionCode: 20005').replace('versionName: 1.0.0','versionName: 0.2.0-alpha.5')
     yml.write_text(text,encoding='utf-8')
     shutil.copyfile(mobile_data,decoded/'assets'/'game.droid')
     shutil.copyfile(ROOT/'assets'/'fusion-pixel-12px-monospaced-zh_hans.ttf',decoded/'assets'/'fusion-pixel-12px-monospaced-zh_hans.ttf')
     # 字体许可证也随用户生成的 APK 保留。
     shutil.copytree(ROOT/'licenses',decoded/'assets'/'licenses',dirs_exist_ok=True)
-    (decoded/'assets'/'options.ini').write_text('[Android]\nDisplayName="Hole Dweller 汉化测试版"\nPackageDomain="io.github"\nPackageCompany="qianliexian"\nPackageProduct="holedweller.zhcn"\nOrientLandscape=-1\nOrientPortrait=0\nOrientLandscapeFlipped=-1\nOrientPortraitFlipped=0\nDebug=False\nYYUse24Bit=0\nSplashscreenTime=0\nSleepMargin=4\nUseShaders=True\n',encoding='utf-8')
+    (decoded/'assets'/'options.ini').write_text(('[Android]\nDisplayName="Hole Dweller 汉化测试版"\nPackageDomain="io.github"\nPackageCompany="qianliexian"\nPackageProduct="holedweller.zhcn"\nOrientLandscape=-1\nOrientPortrait=0\nOrientLandscapeFlipped=-1\nOrientPortraitFlipped=0\nDebug=False\nYYUse24Bit=0\nSplashscreenTime=0\nSleepMargin=4\nUseShaders=True\n').replace('Hole Dweller 汉化测试版', label).replace('PackageProduct="holedweller.zhcn"','PackageProduct="holedweller.' + ('en' if language == 'en' else 'zhcn') + '"'),encoding='utf-8')
     unsigned = build/'unsigned.apk'; aligned = build/'aligned.apk'
     run([JAVA,'-jar',TOOLS/'apktool.jar','b',decoded,'-o',unsigned],log)
     run([TOOLS/'android'/'zipalign.exe','-P','16','-f','4',unsigned,aligned],log)
-    print('4/5 APK 重建与对齐完成。', flush=True)
+    say('4/5 APK 重建与对齐完成。', '4/5 APK rebuilt and aligned.')
     key = WORK/'个人构建签名.jks'
     if not key.exists():
         run([KEYTOOL,'-genkeypair','-keystore',key,'-alias','hd-local','-storepass','android','-keypass','android','-keyalg','RSA','-keysize','2048','-validity','10000','-dname','CN=Hole Dweller Personal Build','-noprompt'],log)
     output = ROOT/'output'; output.mkdir(exist_ok=True)
-    apk = output/'HoleDweller-zhCN-Android-0.2.0-alpha.4.apk'
+    apk = output/('HoleDweller-' + ('EN' if language == 'en' else 'zhCN') + '-Android-0.2.0-alpha.5.apk')
     run([JAVA,'-jar',TOOLS/'android'/'apksigner.jar','sign','--ks',key,'--ks-pass','pass:android','--ks-key-alias','hd-local','--out',apk,aligned],log)
     run([JAVA,'-jar',TOOLS/'android'/'apksigner.jar','verify','--verbose',apk],log)
     run([TOOLS/'android'/'zipalign.exe','-c','-P','16','4',apk],log)
     (output/(apk.name+'.sha256')).write_text(sha(apk.read_bytes())+'  '+apk.name+'\n',encoding='utf-8')
-    print('5/5 签名、对齐检查通过。\n生成位置：'+str(apk)+'\n此为未完成真机验证的实验版。',flush=True)
+    say('5/5 签名、对齐检查通过。生成位置：'+str(apk), '5/5 Signing and alignment checks passed. Output: '+str(apk))
 
 if __name__ == '__main__':
     try: main()
     except Exception as e:
-        print('构建失败：'+str(e),file=sys.stderr); sys.exit(1)
+        print(('Build failed: ' if '--language' in sys.argv and 'en' in sys.argv else '构建失败：')+str(e),file=sys.stderr); sys.exit(1)

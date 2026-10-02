@@ -1,4 +1,2 @@
-@echo off
-chcp 65001 >nul
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0一键打包.ps1"
-pause
+@echo off
+call "%~dp0Build-APK.cmd"

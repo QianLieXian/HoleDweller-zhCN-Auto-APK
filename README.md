@@ -1,27 +1,30 @@
-# Hole Dweller 简体中文汉化
+# Hole Dweller 简体中文汉化与自动 APK 打包
 
 面向 **Steam Windows r44** 的非官方简体中文补丁，使用中文像素字体，提供安装、还原、译文和构建源码。
 
 🟢 **已提供：** 常用界面、角色对白、商店说明、教程与成就文本。  
 🟡 **当前阶段：** 0.1.0 测试版，欢迎反馈译文和排版问题。
 
-## 安卓汉化实验版
+[English README](README.en.md) · [English APK build instructions](android/README.en.md)
 
-🟢 **安卓打包器 0.2.0-alpha.4 已发布。** 持有正版游戏的玩家，可在 Windows 上用自己的 r44 资源一键生成带汉化和触屏控制的 APK。使用 GameMaker 安卓原生运行器，支持64位 ARM设备。
+## 安卓双语打包实验版
+
+🟢 **安卓打包器 0.2.0-alpha.5 已发布。** 持有正版游戏的玩家，可在 Windows 上用自己的 r44 资源一键生成中文或英文 APK，两版均带触屏控制与安卓修复。双击 `Build-APK.cmd`，选择1：中文版或2：Build English APK；首次使用会提醒并自动下载所需便携打包环境。使用 GameMaker 安卓原生运行器，支持64位 ARM设备。
 
 本版加入触屏菜单、Q/E、滚轮、中键锁、120Hz逻辑开关、自动内部分辨率和拉伸开关，并修复沙滩遇见 Zaria 时的显卡死锁闪退。联想小新 Pad 12.6 Pro（Android 12）已通过同一剧情复测；完整游玩及其他设备仍需测试。
 
-- [下载安卓打包器7z](https://github.com/QianLieXian/HoleDweller-zhCN/releases/tag/android-v0.2.0-alpha.4)
+- [下载安卓打包器7z](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases/tag/android-v0.2.0-alpha.5)
 - [安卓中文说明：安装、按键、工具来源及更新方法](android/README.md)
+- [英文打包说明](android/README.en.md)
 - [安卓测试记录](android/测试记录.md)
 
-公开附件提供打包器、汉化差分和适配源码；完整APK由玩家使用自己的游戏资源在本地生成。下载后的便携工具无需设置开机启动。安卓源码目录为 `android/src`，公开仓库不包含便携二进制工具；首次使用请下载 Releases 的完整7z。
+公开附件提供打包器、汉化差分和适配源码；完整APK由玩家使用自己的游戏资源在本地生成。便携工具自动下载到打包器目录，无需设置开机启动。安卓源码目录为 `android/src`，公开仓库不包含便携二进制工具；首次使用请下载 Releases 的完整7z。
 
 ## 下载与反馈
 
-- [下载完整汉化包](https://github.com/QianLieXian/HoleDweller-zhCN/releases)：电脑请选择 `v0.1.0-r44` 的汉化包；安卓请选择 `android-v0.2.0-alpha.4` 的打包器，解压后按对应说明使用。
-- [报告问题或建议改译](https://github.com/QianLieXian/HoleDweller-zhCN/issues)：附版本、触发步骤和完整报错。
-- [项目源码](https://github.com/QianLieXian/HoleDweller-zhCN)：包含译文、安装器与构建脚本。
+- [下载完整汉化包](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases)：电脑请选择 `v0.1.0-r44` 的汉化包；安卓请选择 `android-v0.2.0-alpha.5` 的打包器，解压后按对应说明使用。
+- [报告问题或建议改译](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/issues)：附版本、触发步骤和完整报错。
+- [项目源码](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK)：包含译文、安装器与构建脚本。
 
 ## 版本信息
 

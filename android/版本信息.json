@@ -1,5 +1,5 @@
 {
-  "打包器版本": "0.2.0-alpha.4",
+  "打包器版本": "0.2.0-alpha.5",
   "适配游戏": "Steam Windows r44",
   "汉化版本": "0.1.0",
   "运行器": "GameMaker 2024.14 Android ARM64 / x86_64",
@@ -7,10 +7,20 @@
   "模板SHA256": "eb9ca9c02f255a6790bb131083b5d21a0a7f7f0bf110940bcacdd617e09a4f4f",
   "原版资源SHA256": "5123c1404fa33996b6d07673584b0bd0c8bd81a173d88abe380e3a49785ce68b",
   "汉化资源SHA256": "45b473e7637efcd6b14d098a31d1221130ba55b1a26b534e39af1160032503d3",
-  "包名": "io.github.qianliexian.holedweller.zhcn",
-  "真机状态": "联想TB-Q706F Android 12：覆盖安装成功；用户确认沙滩Zaria剧情通过；复测当前进程无相关严重错误",
+  "包名": {
+    "中文版": "io.github.qianliexian.holedweller.zhcn",
+    "英文版": "io.github.qianliexian.holedweller.en"
+  },
+  "真机状态": "alpha.4：联想TB-Q706F Android 12沙滩Zaria剧情通过；alpha.5：两种APK已构建，设备断开，尚未实机运行",
   "模拟器状态": "alpha.4未执行模拟器运行测试；无驱动模拟器启动失败，采用实体ARM64设备复测",
   "新增功能": "触屏菜单、Q/E、滚轮、中键锁、淡色按键、120Hz开关修正、自动内部分辨率、拉伸开关",
   "日期": "2026-10-03",
-  "本次修复": "角色调色板浮点循环改为有上限整数循环及高精度采样，修复沙滩剧情Adreno显卡死锁"
+  "本次修复": "角色调色板浮点循环改为有上限整数循环及高精度采样，修复沙滩剧情Adreno显卡死锁",
+  "支持语言": [
+    "简体中文",
+    "English"
+  ],
+  "本次新增": "CMD双语菜单、英文游戏及触屏UI、自动下载便携环境、英文README",
+  "环境下载SHA256": "eda04b13754caea798520e536412ca10dd7f2fe2664ad8f424ff221cb5e544c4",
+  "环境引导验证": "无tools目录的测试环境：缓存ZIP校验、解压和英文参数传递通过"
 }

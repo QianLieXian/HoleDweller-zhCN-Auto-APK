@@ -1,21 +1,23 @@
-# Hole Dweller 原生安卓汉化打包实验
+# Hole Dweller 双语安卓 APK 打包器
 
-**版本：0.2.0-alpha.4 · 适配 Steam Windows r44。**
+**版本：0.2.0-alpha.5 · 适配 Steam Windows r44。**
 
-在 Windows 上选择自己持有的游戏目录，工具加入简体中文汉化与触屏控制，再生成可安装的安卓 APK。使用 GameMaker ARM64 安卓运行器执行游戏 VM 字节码，不使用 Windows 模拟器，也不串流电脑。
+在 Windows 上选择自己持有的游戏目录，可打包简体中文版或英文原版，两种版本都带触屏控制与安卓修复，再生成可安装的 APK。使用 GameMaker ARM64 安卓运行器执行游戏 VM 字节码，不使用 Windows 模拟器，也不串流电脑。
 
 🟢 已完成本地构建、APK 签名与对齐检查。此前 alpha.2 启动修复候选在 Android 12 x86_64 测试环境进入中文菜单、存档选择和开场对话；用户随后反馈了实体平板上的按键布局、显示与120Hz问题。  
 🟢 alpha.4 修复沙滩遇见 Zaria 后的显卡死锁闪退：联想小新 Pad 12.6 Pro（Android 12）已覆盖安装，用户复测确认能完成感叹号后的角色剧情。完整游玩及其他设备仍需继续验证。
 
+[English instructions](README.en.md)
+
 ## 下载与反馈
 
-- [下载安卓打包器 0.2.0-alpha.4](https://github.com/QianLieXian/HoleDweller-zhCN/releases/tag/android-v0.2.0-alpha.4)：下载名为 `HoleDweller-Android-Builder-v0.2.0-alpha.4.7z` 的附件，完整解压后使用。
-- [项目首页与电脑汉化](https://github.com/QianLieXian/HoleDweller-zhCN)：电脑汉化与安卓适配在同一仓库维护。
-- [报告问题或提出改译](https://github.com/QianLieXian/HoleDweller-zhCN/issues)：附版本号、设备型号、安卓版本和触发步骤。
+- [下载安卓打包器 0.2.0-alpha.5](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases/tag/android-v0.2.0-alpha.5)：下载名为 `HoleDweller-Android-Builder-v0.2.0-alpha.5.7z` 的附件，完整解压后使用。
+- [项目首页与电脑汉化](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK)：电脑汉化与安卓适配在同一仓库维护。
+- [报告问题或提出改译](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/issues)：附版本号、设备型号、安卓版本和触发步骤。
 
 | 项目 | 当前版本与状态 |
 | --- | --- |
-| 安卓打包器 | **0.2.0-alpha.4，实验版** |
+| 安卓打包器 | **0.2.0-alpha.5，实验版** |
 | 游戏资源 | Steam Windows r44，按文件校验值识别 |
 | 简体中文汉化 | 0.1.0，1,464条资源译文 |
 | 中文像素字体 | Fusion Pixel 12像素等宽简体中文，2026.09.25 |
@@ -25,13 +27,16 @@
 
 ## 一键打包
 
-1. 完整解压工具包，放在可写入的目录，例如“文档”，不要放在游戏目录内。
-2. 双击 **一键打包APK.cmd**。
-3. 选择自己的 Hole Dweller 目录，里面应有 `data.win`。目前只接受已适配的 Steam r44 原版，或本项目 0.1.0 汉化资源。
-4. 等待完成。首次构建会下载约32 MB的固定版本运行器；本工具支持自动探测本机7897代理，也可使用系统代理。
-5. 将 `output/HoleDweller-zhCN-Android-0.2.0-alpha.4.apk` 复制到手机安装。
+1. 下载并完整解压7z，放在可写入的目录，例如“文档”，不要放在游戏目录内。
+2. 双击 **Build-APK.cmd**；中文入口 **一键打包APK.cmd** 也会打开同一个菜单。
+3. 输入 **1：打包中文版**，或 **2：Build English APK**。英文选项的后续操作提示使用英语。
+4. 程序会提醒所需环境；如果没有便携工具，会自动下载约144 MB的环境ZIP，校验SHA256后解压到 `tools`。首次构建另下载约32 MB的固定版本安卓运行器。本工具自动探测本机7897代理，也可设置 `HD_ANDROID_PROXY`。
+5. 选择自己的游戏目录。中文版接受适配的 r44 原版或本项目0.1.0汉化资源；英文版必须有适配的原版 `data.win`，或者安装汉化时留下的 `data.win.zhCN.original` 备份。仅有汉化资源且没有备份时，程序会拒绝英文构建，不会生成假英文版。
+6. 等待完成，将 `output` 下对应的 APK 复制到安卓设备安装：中文版为 `HoleDweller-zhCN-Android-0.2.0-alpha.5.apk`，英文版为 `HoleDweller-EN-Android-0.2.0-alpha.5.apk`。
 
-工具已经携带便携 Java、Python、UndertaleModTool 和 APK 构建工具，不需要设置开机启动。运行器从指定上游版本下载并检查 SHA256。
+中文版和英文版使用不同包名，可以同时安装，存档各自独立，不自动互相迁移。英文版保留原版游戏文本、字体与角色名称，触屏按钮、菜单和操作确认使用英语；两版共享相同的触屏与沙滩闪退修复。打包不会改写电脑的游戏资源或存档。
+
+打包器使用便携 Java、Python、UndertaleModTool 和 APK 构建工具。下载只保存在本工具目录，不安装系统服务、不设置开机启动。以后保留 `tools` 和 `.local/runner-2024.14.apk`，即可避免重复下载；缺少工具时可以重新补齐。如果网络失败，可在同一Release手动下载环境ZIP，放到 `.local/environment-v1.zip` 后重试，程序仍会校验它。
 
 支持 **64位 ARM 安卓手机和平板**；另含 x86_64 运行器供模拟器测试。清单最低 Android 5.0，但实际兼容性、旧安卓及16 KB页设备均需实测。横屏默认保持16:9，以设备实际绘制区域居中；左上角“拉伸”可切换铺满，支持不同屏幕尺寸。
 
@@ -83,7 +88,11 @@
 - 安卓使用应用自身的存档区域，不导入、不修改电脑存档。未请求联网、蓝牙、共享存储权限。
 - 原版资源、电脑汉化资源、电脑存档均不会被打包器改写；只有生成目录中的副本会被处理。
 
-## 本次修复：沙滩剧情闪退
+## alpha.5 更新
+
+新增CMD双语选择入口、英文游戏及英文触屏菜单构建、缺失环境自动下载、英文README。继承alpha.4的沙滩修复。alpha.5的两种APK另行构建验证；完整游玩仍需继续测试。
+
+## 已修复：沙滩剧情闪退
 
 alpha.3 在沙滩遇见 Zaria、开始对话时，联想平板日志两次出现 Adreno 显卡“Resource deadlock would occur”，随后进程被终止。换色着色器使用低精度浮点坐标累加；调色板位于4096像素纹理页较靠下的位置时，累加值可能因精度不足而不再变化，循环无法结束。
 
@@ -106,7 +115,7 @@ alpha.4 将换色扫描改为最多256行的整数循环，在支持的显卡上
 | 项目 | 来源与版本 |
 | --- | --- |
 | 本项目适配脚本和打包程序 | 本目录 `src`；新增代码采用 MIT |
-| 中文补丁 | [HoleDweller-zhCN](https://github.com/QianLieXian/HoleDweller-zhCN)，0.1.0 |
+| 中文补丁 | [HoleDweller-zhCN](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK)，0.1.0 |
 | GameMaker 安卓运行器模板 | [GameMaker-Mobiler](https://github.com/znm2500/GameMaker-Mobiler)，固定提交 `6a23adc1d4e71c238456568df18f85cc7b44caa9` 的2024.14模板 |
 | UndertaleModTool | [官方项目及源码](https://github.com/UnderminersTeam/UndertaleModTool/releases/tag/0.9.2.0)，0.9.2.0；许可证见 `tools/umt/LICENSE.txt` |
 | Apktool | [官方项目](https://github.com/iBotPeaches/Apktool/releases/tag/v2.12.1)，2.12.1 |
@@ -126,6 +135,8 @@ alpha.4 将换色扫描改为最多256行的整数循环，在支持的显卡上
 
 后续先补齐其他角色剧情、触屏与多点触控、保存后重进和声音的实机验证，再扩大设备测试范围。遇到新问题请保留完整日志及版本号，修改 `src/安卓适配.csx` 或 `src/触屏控制.gml` 后重新打包测试。游戏更新后需重新确认资源版本并制作对应汉化差分，不能直接跳过校验。升级打包器时保留本机 `.local/个人构建签名.jks`，以便覆盖安装并保留应用存档。
 
+
+[英文README](README.en.md) 提供同样的打包步骤、触屏说明、环境来源与更新方法。
 
 维护时，安卓源码位于仓库的 `android/src`；下载的完整7z内对应目录是 `src`。需要改译文时，先按项目首页的流程更新译文和汉化差分，再同步到安卓打包器的 `patch`，重新生成APK实测。每次发布都更新版本号、测试记录、README和7z校验文件，在 Releases 里保留旧版，方便比较和回退。
 
