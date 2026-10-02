@@ -1,0 +1,46 @@
+using System;
+using System.IO;
+using System.Linq;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using UndertaleModLib;
+using UndertaleModLib.Models;
+using UndertaleModLib.Compiler;
+// 设置环境变量 HD_ZHCN_PROJECT 指向本项目根目录。
+var root = Environment.GetEnvironmentVariable("HD_ZHCN_PROJECT");
+if (String.IsNullOrEmpty(root)) throw new Exception("未设置 HD_ZHCN_PROJECT。");
+var group = new CodeImportGroup(Data);
+string ReadCode(string name) { return GetDecompiledText(name); }
+string persist = ReadCode("gml_GlobalScript_scr_persistants");
+persist = persist.Replace("global.FONT_POINTS = font_add_sprite(spr_font, 33, false, 1);", "font_add_enable_aa(false); global.FONT_POINTS = font_add(working_directory + \"fusion-pixel-12px-monospaced-zh_hans.ttf\", 9, false, false, 32, 65535);");
+persist = persist.Replace("global.FONT_POINTS_DROP = font_add_sprite(spr_font_drop, 33, false, 0);", "global.FONT_POINTS_DROP = global.FONT_POINTS;");
+group.QueueReplace("gml_GlobalScript_scr_persistants", persist);
+string draw = ReadCode("gml_GlobalScript_scr_text_functions");
+draw = draw.Replace("draw_set_font(arg13);", @"arg2 = scr_zh_display_names(arg2);
+    if (scr_zh_has_cjk(arg2)) arg13 = global.FONT_POINTS;
+    draw_set_font(arg13);
+    arg4 = min(arg4, 620 / max(abs(arg5), 1));
+    arg2 = scr_zh_wrap(arg2, arg4);
+    if (string_pos(""\n"", arg2) > 0) sep = max(sep, 14 * arg6);");
+draw += "\n" + File.ReadAllText(Path.Combine(root,"src","中文排版.gml"));
+group.QueueReplace("gml_GlobalScript_scr_text_functions", draw);
+// 先导入新函数，再编译引用它们的其他脚本。
+var registration = group.Import();
+if (!registration.Successful) throw new Exception(registration.PrintAllErrors(false));
+group = new CodeImportGroup(Data);
+string dialogue = ReadCode("gml_Object_obj_dialogue_Draw_0");
+dialogue = dialogue.Replace("var tx_w =", "var zh_text = scr_zh_wrap(text, 300);\nvar tx_w =").Replace("string_width_ext(text,", "string_width_ext(zh_text,").Replace("string_height_ext(text,", "string_height_ext(zh_text,");
+group.QueueReplace("gml_Object_obj_dialogue_Draw_0", dialogue);
+string gui = ReadCode("gml_GlobalScript_scr_gui_functions");
+gui = gui.Replace("var str_h = string_height_ext(str, text_sep, 420);", "draw_set_font(global.FONT_POINTS); var str_h = string_height_ext(scr_zh_wrap(str, 420), text_sep, 420);");
+group.QueueReplace("gml_GlobalScript_scr_gui_functions", gui);
+string squad = ReadCode("gml_GlobalScript_scr_squad_functions");
+squad = squad.Replace("string_height_ext(str, 24, 300)", "string_height_ext(scr_zh_wrap(str, 300), 24, 300)");
+group.QueueReplace("gml_GlobalScript_scr_squad_functions", squad);
+string textbox = ReadCode("gml_Object_obj_textbox_Draw_64").Replace("draw_set_font(-1);", "draw_set_font(global.FONT_POINTS);");
+group.QueueReplace("gml_Object_obj_textbox_Draw_64", textbox);
+var result = group.Import();
+if (!result.Successful) throw new Exception(result.PrintAllErrors(false));
+var translations = JsonConvert.DeserializeObject<Dictionary<int,string>>(File.ReadAllText(Path.Combine(root,"src","译文.json")));
+foreach (var entry in translations) Data.Strings[entry.Key].Content = entry.Value;
+ScriptMessage("中文补丁构建完成，译文条目："+translations.Count);

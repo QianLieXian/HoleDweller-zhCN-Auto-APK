@@ -1,0 +1,7 @@
+.build/
+*.win
+*.sav
+*.zhCN.original
+*.zhCN.tmp
+__pycache__/
+*.log
