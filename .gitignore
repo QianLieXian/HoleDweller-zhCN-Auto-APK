@@ -5,3 +5,13 @@
 *.zhCN.tmp
 __pycache__/
 *.log
+
+# 安卓本地构建、便携工具与私有数据
+android/tools/
+android/.local/
+android/output/
+*.apk
+*.droid
+*.jks
+*.idsig
+*.7z

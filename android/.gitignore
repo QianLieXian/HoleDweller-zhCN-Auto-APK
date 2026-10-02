@@ -1,0 +1,6 @@
+tools/
+.local/
+output/
+*.apk
+*.jks
+__pycache__/
