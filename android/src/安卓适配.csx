@@ -18,7 +18,7 @@ var root = Environment.GetEnvironmentVariable("HD_ANDROID_PROJECT");
 if (String.IsNullOrEmpty(root)) throw new Exception("缺少安卓项目目录。");
 var registration = new CodeImportGroup(Data);
 var gameFunctions = GetDecompiledText("gml_GlobalScript_scr_game_functions");
-var mobileFunctions = File.ReadAllText(Path.Combine(root,"src", Environment.GetEnvironmentVariable("HD_ANDROID_LANGUAGE") == "en" ? "触屏控制-en.gml" : "触屏控制.gml"));
+var mobileFunctions = File.ReadAllText(Path.Combine(root,"src", Environment.GetEnvironmentVariable("HD_ANDROID_LANGUAGE") == "zh" ? "触屏控制.gml" : "触屏控制-" + Environment.GetEnvironmentVariable("HD_ANDROID_LANGUAGE") + ".gml"));
 registration.QueueReplace("gml_GlobalScript_scr_game_functions", gameFunctions + "\n" + mobileFunctions);
 var imported = registration.Import();
 if (!imported.Successful) throw new Exception(imported.PrintAllErrors(false));

@@ -1,0 +1,82 @@
+{
+  "zh": {
+    "apk": "HoleDweller-zhCN-Android-0.2.0-alpha.6.apk",
+    "bytes": 52466891,
+    "sha256": "30e7c4dcad2f277e54744c9a76e1eb027202c12f8fb6f6bd2a411c5921c7e1fb",
+    "structural_checks": 7,
+    "font_bytes_match": true,
+    "runtime_test": "pending"
+  },
+  "en": {
+    "apk": "HoleDweller-EN-Android-0.2.0-alpha.6.apk",
+    "bytes": 52466891,
+    "sha256": "5446ae7e47834791ef29bbaea491a8a09a8d92ddeca3cfcd34c8d3642ff86f42",
+    "structural_checks": 7,
+    "font_bytes_match": true,
+    "runtime_test": "pending"
+  },
+  "pt": {
+    "apk": "HoleDweller-PT-Android-0.2.0-alpha.6.apk",
+    "bytes": 54138150,
+    "sha256": "05c3a16aa600013f94f3088987d0fefd1f28ed71b198aeaec4ff677e7866ef81",
+    "structural_checks": 10,
+    "font_bytes_match": true,
+    "runtime_test": "pending"
+  },
+  "ru": {
+    "apk": "HoleDweller-RU-Android-0.2.0-alpha.6.apk",
+    "bytes": 54138150,
+    "sha256": "814b1757e28ea00319ab68ec55eeead97fa618a095163f4cca225c818c88995d",
+    "structural_checks": 10,
+    "font_bytes_match": true,
+    "runtime_test": "pending"
+  },
+  "es": {
+    "apk": "HoleDweller-ES-Android-0.2.0-alpha.6.apk",
+    "bytes": 54138150,
+    "sha256": "daeb69878af9d2a6726936ac99584ca89fa93de21a009d9390c1f92cac752fd9",
+    "structural_checks": 10,
+    "font_bytes_match": true,
+    "runtime_test": "pending"
+  },
+  "de": {
+    "apk": "HoleDweller-DE-Android-0.2.0-alpha.6.apk",
+    "bytes": 54138150,
+    "sha256": "2635c63a5917288eb6c3faf530bb41ccdadfe6e8fc6184009ef7f7919ed0e0da",
+    "structural_checks": 10,
+    "font_bytes_match": true,
+    "runtime_test": "pending"
+  },
+  "ja": {
+    "apk": "HoleDweller-JA-Android-0.2.0-alpha.6.apk",
+    "bytes": 54138147,
+    "sha256": "6220c204da3a3dbedfc2edd30002bdb9880dfc9324785987c80e15a71f7f9976",
+    "structural_checks": 10,
+    "font_bytes_match": true,
+    "runtime_test": "pending"
+  },
+  "fr": {
+    "apk": "HoleDweller-FR-Android-0.2.0-alpha.6.apk",
+    "bytes": 54138150,
+    "sha256": "1e79d8296ca339834ef8ad14a7fa03de5c44c79c2c517859190adfd05637be49",
+    "structural_checks": 10,
+    "font_bytes_match": true,
+    "runtime_test": "pending"
+  },
+  "ko": {
+    "apk": "HoleDweller-KO-Android-0.2.0-alpha.6.apk",
+    "bytes": 54138147,
+    "sha256": "c5c408341a058ca3c2f5ad85746000bf0f0a0dd436cd70931a7f8d4f2e8d1956",
+    "structural_checks": 10,
+    "font_bytes_match": true,
+    "runtime_test": "pending"
+  },
+  "tr": {
+    "apk": "HoleDweller-TR-Android-0.2.0-alpha.6.apk",
+    "bytes": 54138150,
+    "sha256": "d7f4134cd86d91e4425ac367fe75a3d8695ec4523c5342546dd9d2ce0139304c",
+    "structural_checks": 10,
+    "font_bytes_match": true,
+    "runtime_test": "pending"
+  }
+}

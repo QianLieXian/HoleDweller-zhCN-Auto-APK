@@ -1,0 +1,130 @@
+{
+  "zh": {
+    "name": "简体中文",
+    "font": "fusion-pixel-12px-monospaced-zh_hans.ttf",
+    "package": "io.github.qianliexian.holedweller.zhcn",
+    "display_names": {},
+    "game_file": null,
+    "translation_state": "available"
+  },
+  "en": {
+    "name": "English",
+    "font": null,
+    "package": "io.github.qianliexian.holedweller.en",
+    "display_names": {},
+    "game_file": null,
+    "translation_state": "available"
+  },
+  "pt": {
+    "name": "Português",
+    "font": "fusion-pixel-12px-monospaced-latin.ttf",
+    "package": "io.github.qianliexian.holedweller.pt",
+    "display_names": {
+      "Options": "Opções",
+      "Progress": "Progresso",
+      "Character": "Personagem",
+      "DAY": "DIA",
+      "Day": "Dia"
+    },
+    "game_file": "pt.game.json",
+    "translation_state": "available"
+  },
+  "ru": {
+    "name": "Русский",
+    "font": "fusion-pixel-12px-monospaced-latin.ttf",
+    "package": "io.github.qianliexian.holedweller.ru",
+    "display_names": {
+      "Options": "Настройки",
+      "Progress": "Прогресс",
+      "Character": "Персонаж",
+      "DAY": "ДЕНЬ",
+      "Day": "День"
+    },
+    "game_file": "ru.game.json",
+    "translation_state": "available"
+  },
+  "es": {
+    "name": "Español",
+    "font": "fusion-pixel-12px-monospaced-latin.ttf",
+    "package": "io.github.qianliexian.holedweller.es",
+    "display_names": {
+      "Options": "Opciones",
+      "Progress": "Progreso",
+      "Character": "Personaje",
+      "DAY": "DÍA",
+      "Day": "Día"
+    },
+    "game_file": "es.game.json",
+    "translation_state": "available"
+  },
+  "de": {
+    "name": "Deutsch",
+    "font": "fusion-pixel-12px-monospaced-latin.ttf",
+    "package": "io.github.qianliexian.holedweller.de",
+    "display_names": {
+      "Options": "Optionen",
+      "Progress": "Fortschritt",
+      "Character": "Figur",
+      "DAY": "TAG",
+      "Day": "Tag"
+    },
+    "game_file": "de.game.json",
+    "translation_state": "available"
+  },
+  "ja": {
+    "name": "日本語",
+    "font": "fusion-pixel-12px-monospaced-ja.ttf",
+    "package": "io.github.qianliexian.holedweller.ja",
+    "display_names": {
+      "Options": "設定",
+      "Progress": "進行状況",
+      "Character": "キャラクター",
+      "DAY": "日",
+      "Day": "日"
+    },
+    "game_file": "ja.game.json",
+    "translation_state": "available"
+  },
+  "fr": {
+    "name": "Français",
+    "font": "fusion-pixel-12px-monospaced-latin.ttf",
+    "package": "io.github.qianliexian.holedweller.fr",
+    "display_names": {
+      "Options": "Options",
+      "Progress": "Progression",
+      "Character": "Personnage",
+      "DAY": "JOUR",
+      "Day": "Jour"
+    },
+    "game_file": "fr.game.json",
+    "translation_state": "available"
+  },
+  "ko": {
+    "name": "한국어",
+    "font": "fusion-pixel-12px-monospaced-ko.ttf",
+    "package": "io.github.qianliexian.holedweller.ko",
+    "display_names": {
+      "Options": "설정",
+      "Progress": "진행 상황",
+      "Character": "캐릭터",
+      "DAY": "일",
+      "Day": "일"
+    },
+    "game_file": "ko.game.json",
+    "translation_state": "available"
+  },
+  "tr": {
+    "name": "Türkçe",
+    "font": "fusion-pixel-12px-monospaced-latin.ttf",
+    "package": "io.github.qianliexian.holedweller.tr",
+    "display_names": {
+      "Options": "Ayarlar",
+      "Progress": "İlerleme",
+      "Character": "Karakter",
+      "DAY": "GÜN",
+      "Day": "Gün"
+    },
+    "game_file": "tr.game.json",
+    "translation_state": "available"
+  }
+}

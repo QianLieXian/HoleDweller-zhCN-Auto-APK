@@ -1,8 +1,10 @@
-# Hole Dweller 双语安卓 APK 打包器
+# Hole Dweller 十语言安卓 APK 打包器
 
-**版本：0.2.0-alpha.5 · 适配 Steam Windows r44。**
+[简体中文](README.md) · [English](README.en.md) · [Português](README.pt.md) · [Русский](README.ru.md) · [Español](README.es.md) · [Deutsch](README.de.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [한국어](README.ko.md) · [Türkçe](README.tr.md)
 
-在 Windows 上选择自己持有的游戏目录，可打包简体中文版或英文原版，两种版本都带触屏控制与安卓修复，再生成可安装的 APK。使用 GameMaker ARM64 安卓运行器执行游戏 VM 字节码，不使用 Windows 模拟器，也不串流电脑。
+**版本：0.2.0-alpha.6 · 适配 Steam Windows r44。**
+
+在 Windows 上选择自己持有的游戏目录，可打包十种语言的 APK，各版都带对应语言的触屏控制与安卓修复。使用 GameMaker ARM64 安卓运行器执行游戏 VM 字节码。
 
 🟢 已完成本地构建、APK 签名与对齐检查。此前 alpha.2 启动修复候选在 Android 12 x86_64 测试环境进入中文菜单、存档选择和开场对话；用户随后反馈了实体平板上的按键布局、显示与120Hz问题。  
 🟢 alpha.4 修复沙滩遇见 Zaria 后的显卡死锁闪退：联想小新 Pad 12.6 Pro（Android 12）已覆盖安装，用户复测确认能完成感叹号后的角色剧情。完整游玩及其他设备仍需继续验证。
@@ -11,32 +13,32 @@
 
 ## 下载与反馈
 
-- [下载安卓打包器 0.2.0-alpha.5](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases/tag/android-v0.2.0-alpha.5)：下载名为 `HoleDweller-Android-Builder-v0.2.0-alpha.5.7z` 的附件，完整解压后使用。
+- [下载安卓打包器 0.2.0-alpha.6](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases/tag/android-v0.2.0-alpha.6)：下载名为 `HoleDweller-Android-Builder-v0.2.0-alpha.6.7z` 的附件，完整解压后使用。
 - [项目首页与电脑汉化](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK)：电脑汉化与安卓适配在同一仓库维护。
 - [报告问题或提出改译](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/issues)：附版本号、设备型号、安卓版本和触发步骤。
 
 | 项目 | 当前版本与状态 |
 | --- | --- |
-| 安卓打包器 | **0.2.0-alpha.5，实验版** |
+| 安卓打包器 | **0.2.0-alpha.6，实验版** |
 | 游戏资源 | Steam Windows r44，按文件校验值识别 |
 | 简体中文汉化 | 0.1.0，1,464条资源译文 |
 | 中文像素字体 | Fusion Pixel 12像素等宽简体中文，2026.09.25 |
 | 本次发布日期 | 2026年10月3日 |
-| 实机验证 | 联想小新 Pad 12.6 Pro / Android 12，沙滩 Zaria 剧情通过 |
+| 实机验证 | alpha.4在联想小新 Pad 12.6 Pro / Android 12通过沙滩剧情；alpha.6未实机运行 |
 | 下载格式 | 使用开源 7-Zip 制作的 `.7z`，附 SHA256 校验文件 |
 
 ## 一键打包
 
 1. 下载并完整解压7z，放在可写入的目录，例如“文档”，不要放在游戏目录内。
 2. 双击 **Build-APK.cmd**；中文入口 **一键打包APK.cmd** 也会打开同一个菜单。
-3. 输入 **1：打包中文版**，或 **2：Build English APK**。英文选项的后续操作提示使用英语。
+3. 按菜单选择语言：1. 简体中文 · 2. English · 3. Português · 4. Русский · 5. Español · 6. Deutsch · 7. 日本語 · 8. Français · 9. 한국어 · 10. Türkçe。后续主要打包提示和触屏按钮使用所选语言。
 4. 程序会提醒所需环境；如果没有便携工具，会自动下载约144 MB的环境ZIP，校验SHA256后解压到 `tools`。首次构建另下载约32 MB的固定版本安卓运行器。本工具自动探测本机7897代理，也可设置 `HD_ANDROID_PROXY`。
-5. 选择自己的游戏目录。中文版接受适配的 r44 原版或本项目0.1.0汉化资源；英文版必须有适配的原版 `data.win`，或者安装汉化时留下的 `data.win.zhCN.original` 备份。仅有汉化资源且没有备份时，程序会拒绝英文构建，不会生成假英文版。
-6. 等待完成，将 `output` 下对应的 APK 复制到安卓设备安装：中文版为 `HoleDweller-zhCN-Android-0.2.0-alpha.5.apk`，英文版为 `HoleDweller-EN-Android-0.2.0-alpha.5.apk`。
+5. 选择自己的游戏目录。中文版接受适配的 r44 原版或本项目0.1.0汉化资源；英文版和八种新增语言必须有适配的原版 `data.win`，或者安装汉化时留下的 `data.win.zhCN.original` 备份。其他资源版本会被拒绝。
+6. 等待完成，将 `output` 下对应的 APK 复制到安卓设备安装：中文版为 `HoleDweller-zhCN-Android-0.2.0-alpha.6.apk`，英文版为 `HoleDweller-EN-Android-0.2.0-alpha.6.apk`。
 
 中文版和英文版使用不同包名，可以同时安装，存档各自独立，不自动互相迁移。英文版保留原版游戏文本、字体与角色名称，触屏按钮、菜单和操作确认使用英语；两版共享相同的触屏与沙滩闪退修复。打包不会改写电脑的游戏资源或存档。
 
-打包器使用便携 Java、Python、UndertaleModTool 和 APK 构建工具。下载只保存在本工具目录，不安装系统服务、不设置开机启动。以后保留 `tools` 和 `.local/runner-2024.14.apk`，即可避免重复下载；缺少工具时可以重新补齐。如果网络失败，可在同一Release手动下载环境ZIP，放到 `.local/environment-v1.zip` 后重试，程序仍会校验它。
+打包器使用便携 Java、Python、UndertaleModTool 和 APK 构建工具。下载只保存在本工具目录，不安装系统服务、不设置开机启动。以后保留 `tools` 和 `.local/runner-2024.14.apk`，即可避免重复下载；缺少工具时可以重新补齐。如果网络失败，可在alpha.5 Release手动下载环境ZIP，放到 `.local/environment-v1.zip` 后重试，程序仍会校验它。
 
 支持 **64位 ARM 安卓手机和平板**；另含 x86_64 运行器供模拟器测试。清单最低 Android 5.0，但实际兼容性、旧安卓及16 KB页设备均需实测。横屏默认保持16:9，以设备实际绘制区域居中；左上角“拉伸”可切换铺满，支持不同屏幕尺寸。
 
@@ -138,6 +140,19 @@ alpha.4 将换色扫描改为最多256行的整数循环，在支持的显卡上
 
 [英文README](README.en.md) 提供同样的打包步骤、触屏说明、环境来源与更新方法。
 
-维护时，安卓源码位于仓库的 `android/src`；下载的完整7z内对应目录是 `src`。需要改译文时，先按项目首页的流程更新译文和汉化差分，再同步到安卓打包器的 `patch`，重新生成APK实测。每次发布都更新版本号、测试记录、README和7z校验文件，在 Releases 里保留旧版，方便比较和回退。
+维护时，安卓源码位于仓库的 `android/src`；下载的完整7z内对应目录是 `src`。中文译文更新后按首页流程重建汉化差分并同步到 `patch`。新增语言改 `locales/语言代码.game.json`，按键译文对应 `locales/语言代码.ui.json` 与 `src/触屏控制-语言代码.gml`；保留条目ID、变量、换行和拼接空格，运行 `src/检查语言.py` 后重新生成APK实测。每次发布都更新版本号、测试记录、各语言README和7z校验文件，在 Releases 里保留旧版，方便比较和回退。
 
 **覆盖更新：** 保留原打包器的 `.local/个人构建签名.jks`，将它放回新版工具相同位置，再重新构建。使用同一签名的APK可以覆盖安装；不要为解决签名不一致直接卸载旧版，以免丢失应用存档。工具源码仓库与公开7z都不会包含个人签名、设备日志或存档。
+
+## alpha.6 多语言支持
+
+新增巴西葡萄牙语、俄语、西班牙语、德语、日语、法语、韩语和土耳其语的游戏译文、触屏按键、主要打包提示及对应README。游戏目录必须是支持的r44原版或原版备份。新语言目录包含1,464个选定资源条目；缺漏、占位符、数字、百分号、换行或拼接空格错误会阻止打包，不以英文填充。人物名称保留原文，图片中的字可能仍为原语言。
+
+译文由GPT网页High档与Codex结合上下文、人物语气和机制编写与修订，没有调用自动机翻服务。法语、土耳其语最后各464条由Codex直接补译。尚未完成独立母语者逐行审校，欢迎携条目ID、截图和建议改译反馈。每个语言版的包名与存档独立，不自动迁移。
+
+字体使用开源Fusion Pixel的latin（含西里尔字母）、ja或ko变体，随包保留许可证。打包解包和重建已限制为单线程，Java堆上限512 MB，以降低电脑负载；修改后十种语言完整构建均通过；该调整不能证明此前意外关机的原因。
+
+alpha.6十种语言APK已完成构建、签名和对齐检查，并重新读取最终APK中的游戏资源验证。八种新增语言各1,464条译文完整，格式和数字检查通过，游戏译文及触屏文本缺失字形为0。详见[语言校验](语言校验.json)与[APK构建验证](APK构建验证.json)。alpha.6尚未连接真机运行；此前alpha.4沙滩剧情实测只作为历史验证。
+
+
+其他语言完整说明：[Português](README.pt.md) · [Русский](README.ru.md) · [Español](README.es.md) · [Deutsch](README.de.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [한국어](README.ko.md) · [Türkçe](README.tr.md)

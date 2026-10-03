@@ -1,0 +1,66 @@
+{
+  "pt": {
+    "entries": 1464,
+    "missing_glyphs": [],
+    "number_mismatches": [],
+    "percent_mismatches": [],
+    "unchanged_long_phrases": [],
+    "file_sha256": "c5811d3d7f32223abcf846c831a71e92629393242229ac239e793709772a736a"
+  },
+  "ru": {
+    "entries": 1464,
+    "missing_glyphs": [],
+    "number_mismatches": [],
+    "percent_mismatches": [],
+    "unchanged_long_phrases": [],
+    "file_sha256": "e440d0f0d448fcbc91211eb56ea9ce2c5010e11fc28794b5d7966b0d671c1db3"
+  },
+  "es": {
+    "entries": 1464,
+    "missing_glyphs": [],
+    "number_mismatches": [],
+    "percent_mismatches": [],
+    "unchanged_long_phrases": [],
+    "file_sha256": "8e0cac99789942f65529f451f0e87b2b1b5229a1d5be07f92bc49465622dd0d5"
+  },
+  "de": {
+    "entries": 1464,
+    "missing_glyphs": [],
+    "number_mismatches": [],
+    "percent_mismatches": [],
+    "unchanged_long_phrases": [],
+    "file_sha256": "072e3886f7dcd7e5ce0e583e921268745062768c046791df32ca67e13eb8d592"
+  },
+  "ja": {
+    "entries": 1464,
+    "missing_glyphs": [],
+    "number_mismatches": [],
+    "percent_mismatches": [],
+    "unchanged_long_phrases": [],
+    "file_sha256": "abc634037bc16740ebee4ee53ac898af73e83cf36d37b1cf1d47228fe88e130e"
+  },
+  "fr": {
+    "entries": 1464,
+    "missing_glyphs": [],
+    "number_mismatches": [],
+    "percent_mismatches": [],
+    "unchanged_long_phrases": [],
+    "file_sha256": "b4dce65ad26a5b3e37a0460b88b61e149d1a9e9209689aa35df95ac5d0595456"
+  },
+  "ko": {
+    "entries": 1464,
+    "missing_glyphs": [],
+    "number_mismatches": [],
+    "percent_mismatches": [],
+    "unchanged_long_phrases": [],
+    "file_sha256": "3fe36a9388c85d6defc5c9853225992bb602b2901bd3cf6006948b50433a1759"
+  },
+  "tr": {
+    "entries": 1464,
+    "missing_glyphs": [],
+    "number_mismatches": [],
+    "percent_mismatches": [],
+    "unchanged_long_phrases": [],
+    "file_sha256": "007ad31d7f0e08306fe3d6f0824f5b4f68702f4d901ab4db92e4308e56291dfa"
+  }
+}

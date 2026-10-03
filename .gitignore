@@ -15,3 +15,5 @@ android/output/
 *.jks
 *.idsig
 *.7z
+
+android/locales/en.source.json

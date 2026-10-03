@@ -1,24 +1,34 @@
 # Hole Dweller Android APK Builder
 
-**Builder version: 0.2.0-alpha.5 · Supported game: Steam Windows r44.**
+[简体中文](README.md) · [English](README.en.md) · [Português](README.pt.md) · [Русский](README.ru.md) · [Español](README.es.md) · [Deutsch](README.de.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [한국어](README.ko.md) · [Türkçe](README.tr.md)
 
-Build a Chinese or English Android APK on Windows using your own copy of Hole Dweller. Both editions include touch controls and Android compatibility fixes. The game runs through a native GameMaker Android runner executing its VM bytecode.
+**Builder version: 0.2.0-alpha.6 · Supported game: Steam Windows r44.**
 
-[中文说明](README.md) · [Download](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases/tag/android-v0.2.0-alpha.5) · [Report a problem](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/issues)
+Build an Android APK in your chosen language on Windows using your own copy of Hole Dweller. All editions include touch controls and Android compatibility fixes. The game runs through a native GameMaker Android runner executing its VM bytecode.
+
+[中文说明](README.md) · [Download](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases/tag/android-v0.2.0-alpha.6) · [Report a problem](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/issues)
 
 ## Build an APK
 
-1. Download `HoleDweller-Android-Builder-v0.2.0-alpha.5.7z` from Releases and extract the entire archive into a writable folder on Windows. Do not place it inside the game installation directory.
+1. Download `HoleDweller-Android-Builder-v0.2.0-alpha.6.7z` from Releases and extract the entire archive into a writable folder on Windows. Do not place it inside the game installation directory.
 2. Double-click **Build-APK.cmd**.
-3. Choose **1. Build Chinese APK** or **2. Build English APK**. Option 2 uses English build prompts.
+3. Choose a language: 1. 简体中文 · 2. English · 3. Português · 4. Русский · 5. Español · 6. Deutsch · 7. 日本語 · 8. Français · 9. 한국어 · 10. Türkçe. The selected language is also used for touch controls and normal build prompts.
 4. The launcher explains that build tools are required. Missing portable tools are downloaded automatically (about 144 MB), checked against a pinned SHA256 hash, and extracted into `tools`. The first build also downloads a fixed Android runner (about 32 MB).
 5. Select your own Hole Dweller folder containing `data.win`.
 6. Wait for the build to finish. Copy the appropriate file from `output` to your Android device and install it:
 
 | Edition | Output file |
 | --- | --- |
-| Chinese | `HoleDweller-zhCN-Android-0.2.0-alpha.5.apk` |
-| English | `HoleDweller-EN-Android-0.2.0-alpha.5.apk` |
+| Chinese | `HoleDweller-zhCN-Android-0.2.0-alpha.6.apk` |
+| English | `HoleDweller-EN-Android-0.2.0-alpha.6.apk` |
+| Português | `HoleDweller-PT-Android-0.2.0-alpha.6.apk` |
+| Русский | `HoleDweller-RU-Android-0.2.0-alpha.6.apk` |
+| Español | `HoleDweller-ES-Android-0.2.0-alpha.6.apk` |
+| Deutsch | `HoleDweller-DE-Android-0.2.0-alpha.6.apk` |
+| 日本語 | `HoleDweller-JA-Android-0.2.0-alpha.6.apk` |
+| Français | `HoleDweller-FR-Android-0.2.0-alpha.6.apk` |
+| 한국어 | `HoleDweller-KO-Android-0.2.0-alpha.6.apk` |
+| Türkçe | `HoleDweller-TR-Android-0.2.0-alpha.6.apk` |
 
 The English build requires the supported original r44 `data.win`, or the `data.win.zhCN.original` backup left by this project's Chinese installer. A translated file without its original backup is rejected for English builds. Other revisions are rejected even if they are also labelled r44.
 
@@ -31,7 +41,7 @@ The English edition retains the original game text, character names and game fon
 - A 64-bit ARM Android phone or tablet. An x86_64 runner is also included for emulator testing. The manifest allows Android 5.0+, but older devices and Android devices using 16 KB memory pages have not been verified.
 - Nothing is installed as a system service and no startup task is created. Tools remain inside the extracted builder folder.
 
-The launcher detects an HTTP proxy at `127.0.0.1:7897`, or you can set `HD_ANDROID_PROXY`. Keep `tools` and `.local/runner-2024.14.apk` to avoid repeat downloads. If automatic environment download fails, download `HoleDweller-Android-Environment-v1.zip` from the same release and save it as `.local/environment-v1.zip`, then run the launcher again. The checksum is still verified.
+The launcher detects an HTTP proxy at `127.0.0.1:7897`, or you can set `HD_ANDROID_PROXY`. Keep `tools` and `.local/runner-2024.14.apk` to avoid repeat downloads. If automatic environment download fails, download `HoleDweller-Android-Environment-v1.zip` from the alpha.5 release and save it as `.local/environment-v1.zip`, then run the launcher again. The checksum is still verified.
 
 Downloading the repository's source ZIP alone does not include the compiled tools; the launcher downloads them when needed. The release's 7z is the recommended starting point.
 
@@ -65,6 +75,16 @@ Scene actions include Space+6 to reload the scene for local MOD changes, and the
 
 Please report the builder version, language choice, device model, Android version, steps to reproduce and the full error. No root is needed to collect crash logs: enable USB debugging, connect the device to Windows, authorize it on the device and run `Collect-Crash-Logs.cmd` (the collector currently prints Chinese status messages). Log collection does not clear saves or upload logs automatically. Review logs before sharing them publicly.
 
+## Additional languages in alpha.6
+
+Portuguese (Brazil), Russian, Spanish, German, Japanese, French, Korean and Turkish add game catalogs, touch controls, build prompts and native-language READMEs. Each game catalog must contain all 1,464 selected r44 entries; missing entries, changed placeholders, numbers, percentages, line breaks or joining spaces stop the build. Image text and character names may retain the original form. English uses the original text.
+
+Each language has a separate app package and saves. Keep your private signing key when updating the same language. New translations were drafted and edited using context and game mechanics with GPT at High and Codex, without automatic translation services. Codex directly translated the last 464 French and Turkish entries; independent line-by-line native-speaker review is still needed.
+
+The new languages use Fusion Pixel latin (including Cyrillic), ja or ko as appropriate. The font files and licenses are included. APK decoding and building use one worker, with a 512 MB Java heap limit, to reduce local load. All ten complete builds passed with these settings; this does not establish the cause of the earlier unexpected PC shutdown.
+
+All ten alpha.6 APKs build and pass signing, alignment and final APK resource inspection. Each new language contains all 1,464 selected entries; format and number checks pass, and the game/touch text has no missing glyphs. See [translation checks](语言校验.json) and [APK checks](APK构建验证.json). alpha.6 has not been run on a physical device; the alpha.4 beach test is historical evidence only.
+
 ## Tools and fonts
 
 | Component | Version and source |
@@ -96,4 +116,6 @@ Source locations in the repository:
 - `android/src/触屏控制.gml`: Chinese touch UI; `触屏控制-en.gml`: English touch UI with the same bindings.
 - `android/Build-APK.ps1`: environment download and launcher.
 
-For a new game revision, verify the original resources, update text mappings and adaptation scripts, rebuild both editions and test them before changing the supported hashes. Do not merely bypass version checks. For Chinese translation changes, update the localization source and regenerate its patch first. Document tests and limitations, update version numbers and both READMEs, then publish the builder and checksums in Releases. Keep old releases available for comparison.
+For a new game revision, verify the original resources, update text mappings and adaptation scripts, rebuild the affected language editions and test them before changing the supported hashes. Do not merely bypass version checks. For Chinese translation changes, update the localization source and regenerate its patch first. Document tests and limitations, update version numbers and the relevant READMEs, then publish the builder and checksums in Releases. Keep old releases available for comparison.
+
+Other complete guides: [Português](README.pt.md) · [Русский](README.ru.md) · [Español](README.es.md) · [Deutsch](README.de.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [한국어](README.ko.md) · [Türkçe](README.tr.md)

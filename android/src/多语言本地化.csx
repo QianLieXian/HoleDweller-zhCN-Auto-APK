@@ -1,0 +1,40 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Text;
+using System.Security.Cryptography;
+using UndertaleModLib.Compiler;
+var root=Environment.GetEnvironmentVariable("HD_ANDROID_PROJECT");
+var language=Environment.GetEnvironmentVariable("HD_ANDROID_LANGUAGE");
+var entries=JsonConvert.DeserializeObject<Dictionary<string,string>>(File.ReadAllText(Path.Combine(root,"locales",language+".game.json")));
+var originals=JsonConvert.DeserializeObject<Dictionary<string,JObject>>(File.ReadAllText(Path.Combine(root,"locales","catalog.json")));
+if(entries.Count!=originals.Count || !entries.Keys.OrderBy(k=>k).SequenceEqual(originals.Keys.OrderBy(k=>k))) throw new Exception("Incomplete language pack");
+// Update strings only after script hooks are imported; original IDs remain checked.
+var originalStrings=Data.Strings.Select(s=>s.Content).ToArray();
+foreach(var k in originals.Keys) { using(var hash=SHA256.Create()) {var digest=BitConverter.ToString(hash.ComputeHash(Encoding.UTF8.GetBytes(originalStrings[Int32.Parse(k)]))).Replace("-","").ToLowerInvariant(); if(digest!=(string)originals[k]["source_sha256"]) throw new Exception("Original resource string IDs do not match r44");}}
+var font=Environment.GetEnvironmentVariable("HD_ANDROID_FONT");
+var display=File.ReadAllText(Path.Combine(root,"locales",language+".display.gml"));
+var helper=File.ReadAllText(Path.Combine(root,"src","多语言排版.gml"));
+var registration=new CodeImportGroup(Data);
+var functions=GetDecompiledText("gml_GlobalScript_scr_text_functions");
+registration.QueueReplace("gml_GlobalScript_scr_text_functions",functions+"\n"+helper);
+var first=registration.Import(); if(!first.Successful) throw new Exception(first.PrintAllErrors(false));
+var group=new CodeImportGroup(Data);
+var persist=GetDecompiledText("gml_GlobalScript_scr_persistants");
+persist=persist.Replace("global.FONT_POINTS = font_add_sprite(spr_font, 33, false, 1);","font_add_enable_aa(false); global.FONT_POINTS = font_add(working_directory + \""+font+"\", 9, false, false, 32, 65535);");
+persist=persist.Replace("global.FONT_POINTS_DROP = font_add_sprite(spr_font_drop, 33, false, 0);","global.FONT_POINTS_DROP = global.FONT_POINTS;");
+persist+="\n"+display; group.QueueReplace("gml_GlobalScript_scr_persistants",persist);
+functions=functions.Replace("draw_set_font(arg13);","arg2=scr_hd_loc_display(arg2); arg13=global.FONT_POINTS; draw_set_font(arg13); arg4=min(arg4,620/max(abs(arg5),1)); arg2=scr_hd_loc_wrap(arg2,arg4); if(string_pos(\"\\n\",arg2)>0) sep=max(sep,14*arg6);");
+group.QueueReplace("gml_GlobalScript_scr_text_functions",functions+"\n"+helper);
+var gui=GetDecompiledText("gml_GlobalScript_scr_gui_functions");
+gui=gui.Replace("var str_h = string_height_ext(str, text_sep, 420);","draw_set_font(global.FONT_POINTS); var str_h = string_height_ext(scr_hd_loc_wrap(str,420),text_sep,420);");
+group.QueueReplace("gml_GlobalScript_scr_gui_functions",gui);
+var dialogue=GetDecompiledText("gml_Object_obj_dialogue_Draw_0");
+dialogue=dialogue.Replace("var tx_w =","var hd_text=scr_hd_loc_wrap(text,300);\nvar tx_w =").Replace("string_width_ext(text,","string_width_ext(hd_text,").Replace("string_height_ext(text,","string_height_ext(hd_text,");
+group.QueueReplace("gml_Object_obj_dialogue_Draw_0",dialogue);
+var result=group.Import(); if(!result.Successful) throw new Exception(result.PrintAllErrors(false));
+foreach(var item in entries) {if(String.IsNullOrWhiteSpace(item.Value)) throw new Exception("Empty translation "+item.Key); Data.Strings[Int32.Parse(item.Key)].Content=item.Value;}
+ScriptMessage("Localized "+entries.Count+" strings: "+language);

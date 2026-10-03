@@ -4,3 +4,6 @@ output/
 *.apk
 *.jks
 __pycache__/
+
+# Original English resource strings stay private; only hashes ship.
+locales/en.source.json

@@ -1,7 +1,18 @@
-﻿param([string]$GameFolder,[ValidateSet('zh','en')][string]$Language='zh')
+﻿param([string]$GameFolder,[ValidateSet('zh','en','pt','ru','es','de','ja','fr','ko','tr')][string]$Language='zh',[switch]$MenuChoice)
 $ErrorActionPreference='Stop'
+if($MenuChoice) {
+ $choices=@('zh','en','pt','ru','es','de','ja','fr','ko','tr')
+ if($env:HD_BUILD_CHOICE -notmatch '^(?:[1-9]|10)$') {Write-Host 'Invalid choice / 无效选项'; exit 1}
+ $Language=$choices[[int]$env:HD_BUILD_CHOICE-1]
+}
 $root=$PSScriptRoot
-function Say($zh,$en) { if($Language -eq 'en') { Write-Host $en } else { Write-Host $zh } }
+$translations=Get-Content -LiteralPath (Join-Path $root 'locales/launcher.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+function Say($zh,$en) {
+ if($Language -eq 'zh') {Write-Host $zh; return}
+ if($Language -eq 'en') {Write-Host $en; return}
+ $key=switch -Wildcard ($en) {'Python, Java*' {'required'} 'Downloading*' {'download'} 'SHA256 verified*' {'extract'} 'Done.*' {'done'} default {''}}
+ if($key) {Write-Host $translations.$Language.$key} else {Write-Host $en}
+}
 try {
     Say '需要便携Python、Java和安卓打包工具；缺少时将自动下载到本工具目录。' 'Python, Java and Android build tools are required; missing tools will be downloaded locally.'
     $required=@('tools\python\python.exe','tools\java\bin\java.exe','tools\java\bin\keytool.exe','tools\umt\UndertaleModCli.exe','tools\apktool.jar','tools\android\zipalign.exe','tools\android\apksigner.jar')
@@ -45,7 +56,7 @@ try {
     if(!$GameFolder) {
         Add-Type -AssemblyName System.Windows.Forms
         $dialog=New-Object System.Windows.Forms.FolderBrowserDialog
-        $dialog.Description=if($Language -eq 'en') {'Select your own Hole Dweller folder containing data.win.'} else {'请选择自己的 Hole Dweller 游戏目录（包含 data.win）。'}
+        $dialog.Description=if($Language -eq 'zh') {'请选择自己的 Hole Dweller 游戏目录（包含 data.win）。'} elseif($Language -eq 'en') {'Select your own Hole Dweller folder containing data.win.'} else {$translations.$Language.folder}
         if($dialog.ShowDialog() -ne [System.Windows.Forms.DialogResult]::OK) { exit 0 }
         $GameFolder=$dialog.SelectedPath
     }
