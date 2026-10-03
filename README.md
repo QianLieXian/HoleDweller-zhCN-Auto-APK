@@ -1,157 +1,57 @@
-# Hole Dweller 多语言本地化与自动 APK 打包
+# Hole Dweller 多语言补丁与自动 APK 打包
 
-面向 **Steam Windows r44** 的非官方简体中文补丁，使用中文像素字体，提供安装、还原、译文和构建源码。
+适用于 **Steam Windows r44** 的非官方本地化项目。Windows 提供语言补丁，安卓提供使用自己正版游戏资源生成 APK 的打包器。
 
-🟢 **已提供：** 常用界面、角色对白、商店说明、教程与成就文本。  
-🟡 **当前阶段：** 0.1.0 测试版，欢迎反馈译文和排版问题。
+[English](README.en.md) · [下载](#下载与版本) · [反馈问题](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/issues)
 
-[English README](README.en.md) · [English APK build instructions](android/README.en.md)
+## 下载与版本
 
-## 安卓十语言打包实验版
+| 平台 | 当前版本 | 下载与说明 |
+| --- | --- | --- |
+| Windows 多语言补丁 | **0.2.0** | [下载7z](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases/tag/v0.2.0-r44) · [Windows说明](windows/README.md) |
+| 安卓自动APK打包器 | **0.2.0-alpha.6** | [下载7z](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases/tag/android-v0.2.0-alpha.6) · [安卓说明](android/README.md) |
 
-🟢 **安卓打包器 0.2.0-alpha.6。** 持有正版游戏的玩家，可在 Windows 上用自己的 r44 资源一键生成十种语言的 APK，各版均带对应语言的触屏控制与安卓修复。双击 `Build-APK.cmd`，按以下菜单选择；首次使用会提醒并自动下载所需便携打包环境。使用 GameMaker 安卓原生运行器，支持64位 ARM设备。
+请下载对应 Release 的7z附件并完整解压。支持的游戏资源有固定校验；同样标为r44的其他发行包也可能不兼容。发布日期：2026年10月3日。
 
-| 选项 | 游戏、触屏与打包说明语言 |
+## 语言
+
+| 菜单 | 语言 | Windows说明 | 安卓说明 |
+| --- | --- | --- | --- |
+| 1 | 简体中文 | [中文](windows/README.md) | [中文](android/README.md) |
+| 2 | English | [English](windows/README.en.md) | [English](android/README.en.md) |
+| 3 | Português（巴西葡萄牙语） | [Português](windows/README.pt.md) | [Português](android/README.pt.md) |
+| 4 | Русский | [Русский](windows/README.ru.md) | [Русский](android/README.ru.md) |
+| 5 | Español | [Español](windows/README.es.md) | [Español](android/README.es.md) |
+| 6 | Deutsch | [Deutsch](windows/README.de.md) | [Deutsch](android/README.de.md) |
+| 7 | 日本語 | [日本語](windows/README.ja.md) | [日本語](android/README.ja.md) |
+| 8 | Français | [Français](windows/README.fr.md) | [Français](android/README.fr.md) |
+| 9 | 한국어 | [한국어](windows/README.ko.md) | [한국어](android/README.ko.md) |
+| 10 | Türkçe | [Türkçe](windows/README.tr.md) | [Türkçe](android/README.tr.md) |
+
+中文及八种新增语言各覆盖1,464条选定游戏文本，包括界面、对白、道具、教程和成就。英文使用原版文本；Windows菜单2还原英文。人物名和图片内文字可能保留原文，第三方MOD新增文本不在覆盖范围内。
+
+## 使用
+
+**Windows：** 退出游戏，解压补丁包，运行 **WindowsPatch.cmd**，选语言，再选游戏目录。首次安装备份原版，已知本项目语言可自动切换；选2还原英文。原有键鼠和Steam调用保留，安装器不访问存档。已修改的其他版本或MOD资源会被拒绝。
+
+**安卓：** 解压打包器，运行 **Build-APK.cmd**，选语言和游戏目录。首次自动下载便携环境与运行器，支持7897代理，不设开机自启。生成的APK在 `output`；不同语言使用独立包名和存档。更新打包器时保留 `.local/个人构建签名.jks`。
+
+## 翻译与验证
+
+译稿由GPT网页High档及Codex结合上下文编写、修订，没有接入自动翻译服务；独立母语者逐行审校仍待进行。欢迎附条目ID、截图和建议反馈。
+
+Windows新增语言已完成资源编译、差分往返、安装、切换、还原和版本拒绝检查；未完成逐语言完整游玩。安卓十语言APK通过构建、签名、对齐和资源检查，alpha.6尚未实机运行。详情见[Windows测试记录](windows/测试记录.json)和[安卓测试记录](android/测试记录.md)。
+
+## 工具与维护
+
+| 项目 | 来源与版本 |
 | --- | --- |
-| 1 | [简体中文](android/README.md) |
-| 2 | [English](android/README.en.md) |
-| 3 | [Português（巴西葡萄牙语）](android/README.pt.md) |
-| 4 | [Русский](android/README.ru.md) |
-| 5 | [Español](android/README.es.md) |
-| 6 | [Deutsch](android/README.de.md) |
-| 7 | [日本語](android/README.ja.md) |
-| 8 | [Français](android/README.fr.md) |
-| 9 | [한국어](android/README.ko.md) |
-| 10 | [Türkçe](android/README.tr.md) |
+| 资源编译 | [UndertaleModTool](https://github.com/UnderminersTeam/UndertaleModTool/releases/tag/0.9.2.0)，0.9.2.0 |
+| 差分生成 | [bsdiff4](https://github.com/ilanschnell/bsdiff4)，1.2.6 |
+| 像素字体 | [Fusion Pixel](https://github.com/TakWolf/fusion-pixel-font/releases/tag/2026.09.25)，2026.09.25，OFL及上游许可证随包保留 |
+| 压缩 | [7-Zip](https://www.7-zip.org/) · [开源代码](https://github.com/ip7z/7zip)，24.08 |
+| 安卓环境 | Python、Java、Apktool、Android SDK与运行器的版本和来源见[安卓说明](android/README.en.md#tools-and-fonts) |
 
-八种新增语言各含1,464条选定游戏文本，结合原文、对白上下文和机制，由GPT网页High档及Codex编写与修订，未调用自动翻译服务。法语、土耳其语最后各464条由Codex直接补译。独立母语者逐行审校仍待进行；人物名称保留原文，图片中的文字可能未本地化。十种语言包名和存档分别独立。
+Windows新增语言与安卓共用 `android/locales` 的译稿；Windows构建源码在 `windows/src`，安卓在 `android/src`，旧版中文补丁源码在 `src`。改译后校验格式，重建对应平台并测试，更新版本、README和校验文件，再发布新的Release；旧版保留以便回退。游戏更新时重新适配资源，不能只改校验值。
 
-沿用触屏菜单、Q/E、滚轮、中键锁、120Hz逻辑开关、自动内部分辨率和拉伸开关，以及沙滩遇见 Zaria 时的显卡死锁修复。十语言alpha.6 APK已通过构建、签名、对齐和最终资源检查，译文及触屏字体缺失字形为0。alpha.6尚未实机运行；此前alpha.4在联想小新 Pad 12.6 Pro（Android 12）通过沙滩剧情复测，完整游玩及其他设备仍需测试。
-
-- [下载安卓打包器7z](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases/tag/android-v0.2.0-alpha.6)
-- [安卓中文说明：安装、按键、工具来源及更新方法](android/README.md)
-- [英文打包说明](android/README.en.md)
-- [安卓测试记录](android/测试记录.md)
-
-公开附件提供打包器、汉化差分和适配源码；完整APK由玩家使用自己的游戏资源在本地生成。便携工具自动下载到打包器目录，无需设置开机启动。安卓源码目录为 `android/src`，公开仓库不包含便携二进制工具；首次使用请下载 Releases 的完整7z。
-
-## 下载与反馈
-
-- [下载完整汉化包](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases)：电脑请选择 `v0.1.0-r44` 的汉化包；安卓请选择 `android-v0.2.0-alpha.6` 的打包器，解压后按对应说明使用。
-- [报告问题或建议改译](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/issues)：附版本、触发步骤和完整报错。
-- [项目源码](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK)：包含译文、安装器与构建脚本。
-
-## 版本信息
-
-| 项目 | 本次发布 |
-| --- | --- |
-| 汉化版本 | **0.1.0** |
-| 适配游戏 | **Hole Dweller · Steam Windows r44** |
-| 发布日期 | 2026年10月3日 |
-| 译文 | 1,464条资源译文，另含中文角色显示名及界面显示转换 |
-| 字体 | Fusion Pixel，12像素、等宽、简体中文变体 |
-| 字体版本 | 2026.09.25 |
-| 资源工具 | UndertaleModTool 0.9.2.0 |
-| 安装环境 | Windows，需有 .NET Framework 4.x；一般 Windows 10/11 已具备 |
-| 发布格式 | `.7z`，使用开源 7-Zip 压缩 |
-
-**同样显示 r44 的其他发行包，也不保证兼容。** 安装器会校验原版 `data.win`，校验不符时停止安装。完整校验值见 [版本信息.json](版本信息.json)。
-
-## 安装与还原
-
-1. 先退出游戏。
-2. 解压完整补丁包，保留目录结构。
-3. 双击 **安装汉化.cmd**，选择包含 `HoleDweller.exe` 和 `data.win` 的游戏文件夹。
-4. 出现安装成功提示后，从 Steam 正常启动游戏即可。
-
-如果提示没有写入权限，右键安装脚本，选择“以管理员身份运行”。不要只复制差分文件，也不要把整个补丁目录覆盖到游戏目录。
-
-需要恢复英文时，退出游戏，双击 **还原英文.cmd**，选择同一个目录。安装器保留的 `data.win.zhCN.original` 是原版备份，请妥善保存。Steam 验证游戏文件也可以恢复原版资源，但会覆盖汉化，需要重新安装。
-
-安装器离线运行，自动检查安装结果，重复安装会提示已经安装。它只处理游戏资源包、随补丁提供的字体及自身备份记录；**不读取或修改存档，也不添加开机启动项。** 不同版本或其他资源模组不应直接叠加。
-
-## 汉化内容与翻译方式
-
-| 内容 | 状态 |
-| --- | --- |
-| 主菜单、设置、开场选择、常用提示 | 已翻译 |
-| 角色对白、话题与技能说明 | 已完成一轮译稿 |
-| 道具名称与说明、成就条件、战斗教程 | 已翻译 |
-| 中文字体、按字宽换行、对白高度计算 | 已适配 |
-| 角色内部名称、存档字段、模组标识 | 保留原值，显示时转换中文 |
-| 标志图片、图片内文字、原版外部图片手册 | 保留原样 |
-| 第三方模组新增对白 | 不在本包覆盖范围内 |
-| 全流程、全部姿势及旧存档兼容性 | 尚未逐项完成实机验证 |
-
-译文由 **GPT 结合角色语气、对白触发情境和游戏机制逐条起草、润色，并统一术语**，没有接入自动机翻服务。本版属于 AI 辅助译稿，尚未经过独立人工逐句审校，不标注为“纯人工汉化”。欢迎用具体台词、场景和截图帮助修正。
-
-常用术语统一为：爱意、技巧、欲火、淫欲、爱心石、钻探、轮回、升华。角色中文显示名只影响显示，避免破坏原有存档和模组识别。
-
-## 画面预览
-
-![中文主菜单](screenshots/主菜单.png)
-
-![中文开场选项](screenshots/开场选项.png)
-
-[查看设置页](screenshots/设置.png) · [查看中文换行测试](screenshots/排版测试.png)
-
-## 已做的检查
-
-- 汉化资源可以构建、重新读取并启动。
-- 检查了全部译文所需字形，未发现缺字。
-- 实际运行检查了主菜单、设置、开场选项及中文换行；修复了新增换行函数未注册造成的对白报错。
-- 差分应用后的文件与构建结果校验一致；还原后的文件与原版校验一致。
-- 验证重复安装、版本不匹配拒绝，以及字体安装和还原。
-
-目前以基础功能验证为主，不能代替完整游戏通关测试。遇到问题请附上：游戏版本、汉化版本、完整报错、触发步骤，以及有帮助的截图。不要将含个人信息的整个存档目录直接公开。
-
-## 文件说明
-
-| 路径 | 用途 |
-| --- | --- |
-| `安装汉化.cmd` / `还原英文.cmd` | 玩家入口 |
-| `汉化安装器.exe` | 离线安装与还原工具 |
-| `patch/汉化补丁.hdp` | 差分补丁，需要用户自己的正版资源包 |
-| `assets/` | 中文像素字体 |
-| `src/译文.json` | 可继续修改的中文译文 |
-| `src/汉化.csx` / `src/中文排版.gml` | 资源修改与中文排版源码 |
-| `src/安装器.cs` | 安装器源码 |
-| `src/重新构建.ps1` / `src/生成差分.py` | 维护与重新打包工具 |
-| `licenses/` | 字体及相关工具许可证 |
-| `版本信息.json` / `测试记录.md` | 文件校验、版本与验证记录 |
-
-发布包不包含原版游戏程序、完整 `data.win`、存档或开发时解包的原游戏源码。
-
-## 工具与字体来源
-
-| 工具／资源 | 用途与链接 |
-| --- | --- |
-| UndertaleModTool | GameMaker 资源读取与修改：[项目](https://github.com/UnderminersTeam/UndertaleModTool) · [0.9.2.0](https://github.com/UnderminersTeam/UndertaleModTool/releases/tag/0.9.2.0) |
-| Fusion Pixel | 开源中文像素字体：[项目](https://github.com/TakWolf/fusion-pixel-font) · [本次字体版本](https://github.com/TakWolf/fusion-pixel-font/releases/tag/2026.09.25) |
-| bsdiff4 | 构建差分所用的开发工具：[项目](https://github.com/ilanschnell/bsdiff4)，本次使用1.2.6；玩家无需安装 |
-| Python | 构建脚本运行环境：[官网](https://www.python.org/)，玩家无需安装 |
-| 7-Zip | 解压及发布压缩：[官网](https://www.7-zip.org/) · [源码](https://github.com/ip7z/7zip)；本次打包使用24.08 |
-
-字体按 **SIL Open Font License 1.1** 提供，随包保留字体及上游许可证。本项目新增代码与译文贡献采用 MIT 许可证；原游戏的原文、美术、音频及其他资源权利属于原作者，不在本项目授权范围内。
-
-## 后续如何跟进
-
-**改译文：** 在 `src/译文.json` 中修改对应编号的中文内容，保留合法 JSON 和 `\n` 换行；不要凭猜测修改编号。然后用干净原版重新构建、测试。修改源码不会自动更新已经安装的汉化。
-
-**重新构建：** 准备 UndertaleModTool 的 Windows 命令行版本，以及装有 `bsdiff4` 的 Python。用 PowerShell 运行下列命令，将两个路径替换为自己的实际路径：
-
-```powershell
-.\src\重新构建.ps1 -GameData "原版游戏目录\data.win" -ToolPath "工具目录\UndertaleModCli.exe"
-```
-
-生成的完整游戏资源只留在 `.build` 中用于本地测试，已加入忽略规则。发布时仅提供项目文件和差分补丁，不上传该目录。
-
-**游戏更新：** 先取得并备份新版本原版文件，再重新核对文本编号、字体加载位置和界面脚本。逐项迁移译文，检查新增台词与排版，验证安装和还原，最后更新版本信息、说明文档和压缩包。**不能只改校验值，就把旧补丁当作支持新版本。**
-
-建议后续依次完成：更多实机场景检查、对白人工审校、图片文字整理、其他版本适配。每次发布使用新的版本号，并简要列出变化。
-
-## 上传 GitHub
-
-将本项目文件夹中的文件上传为仓库内容，让 `README.md` 位于仓库根目录。把完整 `.7z` 补丁包作为 Releases 附件，版本可命名为 `v0.1.0-r44`。仓库描述可写：**Hole Dweller Steam r44 非官方简体中文汉化，附像素字体、离线安装器和维护源码。**
-
-只上传这里整理好的项目内容；开发工作目录、原游戏资源和备份不需要上传。
+项目新增代码采用MIT。字体、工具、原游戏及运行器各自遵循其许可。公开附件只提供补丁和打包工具，不包含原版游戏、完整APK、存档或私人签名；完整APK由玩家本地生成。

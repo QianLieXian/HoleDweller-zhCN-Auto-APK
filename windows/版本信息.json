@@ -1,0 +1,90 @@
+{
+  "version": "0.2.0",
+  "game": "Steam Windows r44",
+  "original_sha256": "5123c1404fa33996b6d07673584b0bd0c8bd81a173d88abe380e3a49785ce68b",
+  "font_version": "2026.09.25",
+  "languages": {
+    "zh": {
+      "name": "简体中文",
+      "entries": 1464,
+      "font": "fusion-pixel-12px-monospaced-zh_hans.ttf",
+      "patched_sha256": "45b473e7637efcd6b14d098a31d1221130ba55b1a26b534e39af1160032503d3",
+      "patch_sha256": "b36e088b285d15318b01b59124ce1ecc679a4c65ddc06a9169dab2e197396ada",
+      "roundtrip": "PASS",
+      "resource_check": "existing 0.1.0 patch"
+    },
+    "pt": {
+      "name": "Português",
+      "entries": 1464,
+      "font": "fusion-pixel-12px-monospaced-latin.ttf",
+      "patched_sha256": "b5fa3043aba88885ef331962ae9cf67f57eb47c17da1a5fc6e2218cdd1ceb4c1",
+      "patch_sha256": "1d4afe448ee281e57c57c8875721bf0ce28e51c91cf44e1771b4640da0b590c8",
+      "roundtrip": "PASS",
+      "resource_check": "PASS"
+    },
+    "ru": {
+      "name": "Русский",
+      "entries": 1464,
+      "font": "fusion-pixel-12px-monospaced-latin.ttf",
+      "patched_sha256": "215deda80fb16f0c26bf1b524cc15064061b02df05851436d49eda886fcda3d1",
+      "patch_sha256": "20ddbfe73c1b3d5685d15ac2e56dccfeb0f930e4fa8269e30d637d71c202200d",
+      "roundtrip": "PASS",
+      "resource_check": "PASS"
+    },
+    "es": {
+      "name": "Español",
+      "entries": 1464,
+      "font": "fusion-pixel-12px-monospaced-latin.ttf",
+      "patched_sha256": "14c7b6a851bb1d8abab70b13a6570a338eea30c8094b545b21b08e9f15798c89",
+      "patch_sha256": "b1159b84327f36b25c07b0abe9cf8a429ff6ab21d769bd0bc7e6d2e3308db96a",
+      "roundtrip": "PASS",
+      "resource_check": "PASS"
+    },
+    "de": {
+      "name": "Deutsch",
+      "entries": 1464,
+      "font": "fusion-pixel-12px-monospaced-latin.ttf",
+      "patched_sha256": "06cc8e6de697c5b656ed25505b1b9fac01b2132eee8195dd1843a5d7bb232e7e",
+      "patch_sha256": "34adaa0de49195a756f63038228fb658115cb586f719c279dd37c6e7a562509e",
+      "roundtrip": "PASS",
+      "resource_check": "PASS"
+    },
+    "ja": {
+      "name": "日本語",
+      "entries": 1464,
+      "font": "fusion-pixel-12px-monospaced-ja.ttf",
+      "patched_sha256": "13c4f5125b36610b8103476d76fb982500d5cccdc97e9269e523dda0ae67a2ee",
+      "patch_sha256": "2645bec01c392bc19da9ea0a8f7ccf29653d945670aa14b085cd68e6f4336eac",
+      "roundtrip": "PASS",
+      "resource_check": "PASS"
+    },
+    "fr": {
+      "name": "Français",
+      "entries": 1464,
+      "font": "fusion-pixel-12px-monospaced-latin.ttf",
+      "patched_sha256": "10558da9be71de116303b0fdeb24aea6103bf71ba5294ca472fd7db60af19b02",
+      "patch_sha256": "bec9d464e2bd645410911ca2fabadccf523054a959643cbff65d1337bb69e59a",
+      "roundtrip": "PASS",
+      "resource_check": "PASS"
+    },
+    "ko": {
+      "name": "한국어",
+      "entries": 1464,
+      "font": "fusion-pixel-12px-monospaced-ko.ttf",
+      "patched_sha256": "c7e100a2fb8b664ebc07eb62b452e7f1102a229e2cb35151f84670992a131c6d",
+      "patch_sha256": "fff677232bcdd63d001cb74dbf1577c463d63a58a4275f4ccc7a183d1c916e8d",
+      "roundtrip": "PASS",
+      "resource_check": "PASS"
+    },
+    "tr": {
+      "name": "Türkçe",
+      "entries": 1464,
+      "font": "fusion-pixel-12px-monospaced-latin.ttf",
+      "patched_sha256": "a687cc981bfc29ab336e646e467f997d559d627e0be982cfa10de088fdce3931",
+      "patch_sha256": "e4342772ee40762d72e83ab769872cc599f94d465282af0aa3368f47b78f1d81",
+      "roundtrip": "PASS",
+      "resource_check": "PASS"
+    }
+  },
+  "runtime_test": "pending; no complete playthrough or native-speaker review"
+}

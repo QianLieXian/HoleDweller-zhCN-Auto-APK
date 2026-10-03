@@ -1,45 +1,47 @@
-# Hole Dweller Multilingual Localization & Auto APK Builder
+# Hole Dweller Localization & Auto APK Builder
 
-Unofficial localization for **Hole Dweller Steam Windows r44**, plus a Windows tool that builds Android APKs in ten languages from your own game resources.
+Unofficial localization for **Steam Windows r44**: install language patches on Windows, or build native Android APKs from your own game copy.
 
-[中文说明](README.md) · [Android build instructions in English](android/README.en.md) · [Releases](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases)
+[简体中文](README.md) · [Issues](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/issues)
 
-## Android: build your own APK
+## Downloads
 
-Download the **0.2.0-alpha.6 builder 7z** from [the Android release](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases/tag/android-v0.2.0-alpha.6), extract it and run **Build-APK.cmd**. Choose a language from the menu below. Missing portable build tools are downloaded and verified automatically; then select your supported Steam game folder. The resulting APK is written to `output`.
+| Platform | Version | Download and guide |
+| --- | --- | --- |
+| Windows language patches | **0.2.0** | [Builder-free patch 7z](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases/tag/v0.2.0-r44) · [Windows guide](windows/README.en.md) |
+| Android APK builder | **0.2.0-alpha.6** | [Builder 7z](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases/tag/android-v0.2.0-alpha.6) · [Android guide](android/README.en.md) |
 
-| Choice | Complete build guide |
-| --- | --- |
-| 1 | [简体中文](android/README.md) |
-| 2 | [English](android/README.en.md) |
-| 3 | [Português brasileiro](android/README.pt.md) |
-| 4 | [Русский](android/README.ru.md) |
-| 5 | [Español](android/README.es.md) |
-| 6 | [Deutsch](android/README.de.md) |
-| 7 | [日本語](android/README.ja.md) |
-| 8 | [Français](android/README.fr.md) |
-| 9 | [한국어](android/README.ko.md) |
-| 10 | [Türkçe](android/README.tr.md) |
+Download the release asset and extract the entire archive. Resources are verified by a fixed hash; other packages labelled r44 may be incompatible. Release date: 3 October 2026.
 
-English builds preserve the original English game text. Localized builds include the selected translation, matching pixel font, touch controls and menus. All editions include Android compatibility fixes and a stretch toggle. They use separate package names and independent saves. Each of the eight new languages includes all 1,464 selected game entries; names and text embedded in images may remain in the original language.
+## Languages
 
-| Project part | Version |
-| --- | --- |
-| Android APK builder | 0.2.0-alpha.6, experimental |
-| Windows Chinese patch | 0.1.0 |
-| Supported game resources | Steam Windows r44, verified by SHA256 |
-| Chinese pixel font | Fusion Pixel 12px, 2026.09.25 |
+| Menu | Language | Windows | Android |
+| --- | --- | --- | --- |
+| 1 | 简体中文 | [Guide](windows/README.md) | [Guide](android/README.md) |
+| 2 | English | [Guide](windows/README.en.md) | [Guide](android/README.en.md) |
+| 3 | Português brasileiro | [Guia](windows/README.pt.md) | [Guia](android/README.pt.md) |
+| 4 | Русский | [Инструкция](windows/README.ru.md) | [Инструкция](android/README.ru.md) |
+| 5 | Español | [Guía](windows/README.es.md) | [Guía](android/README.es.md) |
+| 6 | Deutsch | [Anleitung](windows/README.de.md) | [Anleitung](android/README.de.md) |
+| 7 | 日本語 | [説明](windows/README.ja.md) | [説明](android/README.ja.md) |
+| 8 | Français | [Guide](windows/README.fr.md) | [Guide](android/README.fr.md) |
+| 9 | 한국어 | [설명](windows/README.ko.md) | [설명](android/README.ko.md) |
+| 10 | Türkçe | [Kılavuz](windows/README.tr.md) | [Kılavuz](android/README.tr.md) |
 
-All ten alpha.6 APKs build and pass signing, alignment and final resource inspection. The new game and touch translations have no missing font glyphs. alpha.4's beach encounter GPU fix was tested on a Lenovo TB-Q706F running Android 12. alpha.6 has not yet been run on a physical device; full playthroughs and other devices remain unverified. Read the [full English Android README](android/README.en.md) for requirements, controls, tool and font links, troubleshooting and update instructions.
+Chinese and each of the eight new languages cover 1,464 selected entries: interface, dialogue, items, tutorials and achievements. English uses the original text; Windows choice 2 restores it. Names, image text and third-party MOD additions may remain untranslated.
 
-## Windows Chinese patch
+## Quick start
 
-The separate [v0.1.0-r44 release](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/releases/tag/v0.1.0-r44) contains the Windows patch installer. Extract its 7z, run the Chinese installation launcher and select the game directory. A restore launcher is included. The [Chinese project README](README.md) covers installation and translation maintenance.
+**Windows:** close the game, extract the patch archive, run **WindowsPatch.cmd**, choose a language and select your game folder. The original is backed up automatically. Switching recognized project patches is supported; choice 2 restores English. Desktop input and Steam calls are retained. Saves are untouched and unrecognized modified resources are rejected.
 
-Translations were drafted and revised with GPT at High and Codex using context and character tone, without automatic translation services. Codex directly translated the last 464 French and Turkish entries. Independent native-speaker review is still pending. The English Android build uses the original game text.
+**Android:** extract the builder, run **Build-APK.cmd**, choose a language and your game folder. Missing portable tools and the runner download automatically; proxy port7897 is supported, and no startup tasks are created. Find your APK in `output`. Each language has independent saves. Preserve `.local/个人构建签名.jks` when updating the builder.
 
-## Contributing and distribution
+## Quality and maintenance
 
-Report problems with the version, language, device/OS and reproduction steps in [Issues](https://github.com/QianLieXian/HoleDweller-zhCN-Auto-APK/issues). Android source is in `android/src`; localization source is in `src`. Preserve your local signing key when updating the builder to keep installing updates over the same edition.
+Translations were drafted and edited contextually with GPT at High and Codex, without automatic translation services. Independent native-speaker review remains pending. Windows patches pass resource compilation, delta roundtrip, install/switch/restore and rejection tests; full playthroughs in every language are unverified. All ten Android builds pass signing, alignment and resource checks; alpha.6 device testing remains pending. See the platform test records.
 
-Public releases contain builders and patches, not the original game, complete APKs, saves or private signing keys. Use your own game copy. New project code uses MIT; fonts, tools, game assets and the runner retain their respective licenses. Tool and font links are listed in the [English Android documentation](android/README.en.md#tools-and-fonts).
+Tool sources: [UndertaleModTool 0.9.2.0](https://github.com/UnderminersTeam/UndertaleModTool/releases/tag/0.9.2.0), [bsdiff4 1.2.6](https://github.com/ilanschnell/bsdiff4), [Fusion Pixel 2026.09.25](https://github.com/TakWolf/fusion-pixel-font/releases/tag/2026.09.25), [7-Zip 24.08](https://github.com/ip7z/7zip). Full Android tool links are in the [Android guide](android/README.en.md#tools-and-fonts); font licenses are included.
+
+Translations are shared in `android/locales`; Windows build source is in `windows/src`, Android source in `android/src`, and legacy Chinese source in `src`. Validate changes, rebuild the affected patches/APKs, test, update documentation and hashes, then publish a new release. Re-adapt new game revisions rather than bypassing hash checks.
+
+New project code uses MIT. Fonts, tools, game assets and the runner retain their own licenses. Public releases contain patches and builders, without original game files, complete APKs, saves or private keys.

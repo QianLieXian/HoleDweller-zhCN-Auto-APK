@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "date": "2026-10-03",
+  "checks": [
+    "zh install / switch / repeat / original backup / font / save PASS",
+    "pt install / switch / repeat / original backup / font / save PASS",
+    "ru install / switch / repeat / original backup / font / save PASS",
+    "es install / switch / repeat / original backup / font / save PASS",
+    "de install / switch / repeat / original backup / font / save PASS",
+    "ja install / switch / repeat / original backup / font / save PASS",
+    "fr install / switch / repeat / original backup / font / save PASS",
+    "ko install / switch / repeat / original backup / font / save PASS",
+    "tr install / switch / repeat / original backup / font / save PASS",
+    "restore automatic detection / original fonts / repeat PASS",
+    "unknown resource rejected without overwrite PASS",
+    "corrupt backup rejected without overwrite PASS",
+    "PowerShell choices 1-10 / invalid inputs PASS"
+  ],
+  "runtime": "not yet tested per language; not a full playthrough"
+}
